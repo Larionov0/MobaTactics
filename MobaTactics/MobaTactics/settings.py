@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'authsys.User'
-
+LOGIN_REDIRECT_URL = '/main/lobbies'
 
 # Application definition
 

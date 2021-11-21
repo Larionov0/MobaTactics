@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobbies</title>
+</head>
+<body>
+    <div class="lobbies">
+        <h1>Список лобі:</h1>
+        {% for lobby in lobbies %}
+            <div class="lobby">
+                <h3>{{ lobby.name }}</h3>
+                <p>{{ lobby.users.count }}</p>
+                <a href="/main/enter_lobby/{{lobby.id}}"><button>Войти в лобби</button></a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

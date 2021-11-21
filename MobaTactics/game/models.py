@@ -10,6 +10,9 @@ class Lobby(models.Model):
     update_id = models.IntegerField(default=0)
     active_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='active_lobby')
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Hero(models.Model):
     name = models.CharField(max_length=50, default='new hero')
@@ -28,11 +31,17 @@ class Hero(models.Model):
     is_active = models.BooleanField(default=False)
     img_src = models.ImageField(blank=True, null=True)  # возможно, нужно пока сделать просто строку с линком
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Message(models.Model):
     lobby = models.ForeignKey(Lobby, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
     datetime = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"({self.datetime}) {self.text}"
 
 
 class ChatMessage(models.Model):

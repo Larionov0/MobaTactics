@@ -11,3 +11,7 @@ class User(AbstractUser):
 
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
+
+    def exit_lobby(self):
+        self.lobby = None
+        self.save()

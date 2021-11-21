@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobby {{ lobby.name }}</title>
+</head>
+<body>
+    <h2>Лобби {{ lobby.name }}</h2>
+    <h3>Ожидаем второго игрока...</h3>
+    <a href="/main/exit_lobby"><button>Выйти из лобби</button></a>
+</body>
+<script>
+    setInterval(()=> {
+        fetch('/main/check_game_start', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            // body: JSON.stringify({})
+        }
+        ).then((response) => {return response.json()}
+        ).then((data) => {
+            if (data['start']){
+                window.location.replace('/main/game')
+            }
+        });
+    }, 5000)
+</script>
+</html>
