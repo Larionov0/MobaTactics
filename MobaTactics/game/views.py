@@ -21,7 +21,7 @@ def enter_lobby(request, lobby_id):
     else:
         request.user.lobby = lobby
         request.user.save()
-        return render(request, 'lobby.html', {'lobby': lobby, 'user': User})
+        return render(request, 'lobby.html', {'lobby': lobby, 'user': request.user})
 
 
 def exit_lobby(request):
