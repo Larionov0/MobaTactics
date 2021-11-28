@@ -1,0 +1,102 @@
+
+/*---------------------------------------*/
+html{
+    box-sizing: border-box;
+}
+
+*,*::before, *::after{
+    box-sizing: inherit;
+}
+body {
+    background-color: #04061D;
+    margin: 2rem;
+
+}
+/*---------------------------------------*/
+
+h2 {
+    font-family: BalooTamma;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    display:inherit;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+p {
+    font-family: ABeeZee;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    display:inherit;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+
+
+.login{
+    width: 50%;
+    overflow: hidden;
+    margin: 4% auto;
+    padding: 4%;
+    background: #151626;
+    border-radius: 30px ;
+    position: relative;
+    text-align: center; 
+}  
+
+input#id_username{
+    width: 53%;
+    color: black;
+    padding: 2%;
+    font-family: Baloo;
+    font-size: 24px;
+    background: #C4C4C4;
+    border-radius: 20px;
+}
+input#id_password{
+    width: 53%;
+    color: black;
+    padding: 2%;
+    font-family: Baloo;
+    font-size: 24px;
+    background: #C4C4C4;
+    border-radius: 20px;
+}
+
+#log{  
+    width: 53%;
+    padding: 2%;
+    border: none;
+    border-radius: 17px;
+    padding-left: 7px;
+    color: black;
+    font-family: Baloo;
+    font-size: 24px;
+    background-color: #577334;
+    transition: all .2s ease-in-out;
+}  
+#log:hover{
+    transform: scale(1.05);
+    background: #60803a ;
+    transition: 0.4s;
+}
+
+span{  
+    color: white;
+    font-size: 17px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    display: block;
+}

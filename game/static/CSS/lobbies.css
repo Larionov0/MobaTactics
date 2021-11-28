@@ -1,0 +1,91 @@
+html{
+    box-sizing: border-box;
+}
+
+*,*::before, *::after{
+    box-sizing: inherit;
+}
+body {
+    background-color: #04061D;
+    margin: 2rem;
+    font-size: 1.5em;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+}
+h1{
+    margin: 0 auto;
+    font-family: BalooTamma;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2em;
+    display: block;
+    align-items: center;
+    color: #FFFFFF;
+    text-align: center;
+}
+p {
+    font-family: ABeeZee;
+    font-style: normal;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    display:inherit;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.lobby_container{  
+    width: 80%;
+    max-height: 70vh;
+      
+    overflow: scroll;
+    overflow-x: hidden;
+    margin: 2em auto;
+    padding: 1em 2em;
+    background: #383946;
+    border-radius: 30px 0 0 30px ;
+    position: relative;
+    
+    text-align: center;
+} 
+.lobby_container::-webkit-scrollbar{
+    width: 1.5vh;
+}.lobby_container p{
+    width: 50%;
+}.lobby_container .player_count{
+    width: 10%;
+}
+.lobby_container::-webkit-scrollbar-thumb{
+    background: cyan;
+    border-radius: 50px;
+}
+.lobby_container::-webkit-scrollbar-track{
+    background: #04061D;
+}
+.lobby_label{
+    width: 100%;
+    height: 5%;
+    margin-top: 0.5em;
+    /*padding: auto;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.lobby_label button{
+    width: 30%;
+    padding: 1em;
+    border: none;
+    border-radius: 17px;
+    font-size: 1em;
+    color: black;
+    font-family: Baloo;
+    background-color: #577334;
+    transition: all .2s ease-in-out;
+}
+.lobby_label button:hover{
+    transform: scale(1.05);
+    background: #60803a ;
+    transition: 0.4s;
+}

@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/lobbies.css' %}">
     <title>Lobbies</title>
+    <style type="text/css">
+        @font-face { /* https://www.google.com/get/noto/#noto-emoji-zsye */
+            font-family: BalooTamma;
+            src: url("{% static 'FONTS/BalooTamma-Regular.ttf' %}");
+        }
+        @font-face { /* https://www.google.com/get/noto/#noto-emoji-zsye */
+            font-family: Baloo;
+            src: url("{% static 'FONTS/Baloo-Regular.ttf' %}");
+        }
+        @font-face { /* https://www.google.com/get/noto/#noto-emoji-zsye */
+            font-family: ABeeZee;
+            src: url("{% static 'FONTS/ABeeZee-Regular.ttf' %}");
+        }
+    </style>
 </head>
 <body>
-    <div class="lobbies">
-        <h3>Ви авторизовані як {{ user.username }}</h3>
-        <h1>Список лобі:</h1>
+    <div>
+        <h1>Hello, {{ user.username }}</h1>
+        <div class="lobby_container">
         {% for lobby in lobbies %}
-            <div class="lobby">
-                <h3>{{ lobby.name }}</h3>
-                <p>{{ lobby.userprofiles.count }}</p>
-                <a href="/main/enter_lobby/{{lobby.id}}"><button>Войти в лобби</button></a>
+            <div class="lobby_label">
+                <p>{{ lobby.name }}</p>
+                <p class="player_count">{{ lobby.userprofiles.count }}/2</p>
+                <button onclick="window.location.href='/main/enter_lobby/{{lobby.id}}'">Войти | Join</button>
             </div>
         {% endfor %}
+        </div>
     </div>
 </body>
 </html>
