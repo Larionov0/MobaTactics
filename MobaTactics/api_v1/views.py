@@ -43,6 +43,7 @@ def get_data(request):
     lobby = get_lobby(request)
     if lobby.update_id != update_id:
         heroes = [{
+            "id": hero.id,
             "name": hero.name,
             "max_hp": hero.max_hp,
             "hp": hero.hp,
@@ -64,7 +65,8 @@ def get_data(request):
             "is_my_move": request.user.userprofile == lobby.active_user,
             "winner": None,
             "chat": [],
-            "players": [{"name": user.username, "user_id": user.id} for user in lobby.users]
+            "players": [{"name": user.username, "user_id": user.id} for user in lobby.users],
+            "player_id": request.user.id
         })
     else:
         return JsonResponse({})

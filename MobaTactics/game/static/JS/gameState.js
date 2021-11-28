@@ -116,8 +116,23 @@
 // }
 
 
-var gameState;
+var gameState={}
 
+async function load(){
+	var result = await fetch('/api/v1/get_data', {
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json',
+			'X-CSRFToken': csrf_token
+		},
+		body: JSON.stringify({
+			'update_id': update_id})
+	})
+	var data = await result.json()
+	if (Object.keys(data).length){
+		gameState = data
+	}
+}
 
 function update_from_gameState() {
 	var size = document.getElementById("ninja").value*0.5+"px";
@@ -195,27 +210,13 @@ function update_from_gameState() {
 }
 
 
-function update() {
-	fetch('/api/v1/get_data', {
-		method: 'post',
-		headers: {
-			'Content-Type': 'application/json',
-			'X-CSRFToken': csrf_token
-		},
-		body: JSON.stringify({
-			'update_id': update_id})
+async function update() {
+	await load()
+	if (Object.keys(gameState).length){
+		update_from_gameState()
+		drawPlayers()
+		loadMessages()
 	}
-	).then((response) => {return response.json()}
-	).then((data) => {
-		console.log(data)  // {"heroes": ...}
-		gameState = data
-
-		if (Object.keys(data).length){
-			update_from_gameState()
-			drawPlayers()
-			loadMessages()
-		}
-	})
 }
 
 

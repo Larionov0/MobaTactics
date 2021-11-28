@@ -6,7 +6,7 @@ function showMoves(id){
 
 	if (current_user == hero.user_id){
 
-		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(5-hero.y)+") td:nth-of-type("+hero.x+")")[0];
+		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y)+") td:nth-of-type("+hero.x+")")[0];
 		hero_cell.oldcolor = hero_cell.style.backgroundColor;
 		hero_cell.style.backgroundColor = "rgba(180, 201, 254, 0.9)";
 
@@ -19,7 +19,7 @@ function showMoves(id){
 		for (let i in availableMoves) {
 
 			try {
-				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(5-availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
+				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
 				// console.log(cellToHighlight.id);
 				if (cellToHighlight.childNodes[0] == null){
 					cellToHighlight.oldcolor = cellToHighlight.style.backgroundColor;
@@ -43,7 +43,7 @@ function hideMoves(id){
 
 	if (current_user == hero.user_id){
 
-		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(5-hero.y)+") td:nth-of-type("+hero.x+")")[0];
+		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y)+") td:nth-of-type("+hero.x+")")[0];
 		hero_cell.style.backgroundColor = hero_cell.oldcolor;
 
 		// var movement = hero.movement.split(';');
@@ -54,7 +54,7 @@ function hideMoves(id){
 		for (let i in availableMoves) {
 
 			try {
-				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(5-availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
+				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
 				// console.log(cellToHighlight.id);
 				if (cellToHighlight.childNodes[0] == null){
 					cellToHighlight.style.backgroundColor = cellToHighlight.oldcolor;
@@ -80,7 +80,7 @@ function tryMove(id){
 
 	if (current_user == hero.user_id){
 
-		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(5-hero.y)+") td:nth-of-type("+hero.x+")")[0];
+		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y)+") td:nth-of-type("+hero.x+")")[0];
 		var active = hero_cell.querySelectorAll(".cell_overlay")[0];
 		active.addEventListener("click", cancelAction, false);
 		// hero_cell.style.backgroundColor = "rgba(192, 192, 192, 0.9)";
@@ -92,7 +92,7 @@ function tryMove(id){
 		for (let i in availableMoves) {
 
 			try {
-				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(5-availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
+				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
 				// console.log(cellToHighlight.id);
 				if (cellToHighlight.childNodes[0] == null){
 					cellToHighlight.removeEventListener("click", makeAttack, false);
@@ -139,7 +139,7 @@ function tryAttack(id){
 
 	if (current_user == hero.user_id){
 
-		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(5-hero.y)+") td:nth-of-type("+hero.x+")")[0];
+		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y)+") td:nth-of-type("+hero.x+")")[0];
 		hero_cell.style.backgroundColor = "rgba(180, 201, 254, 0.9)";
 		var active = hero_cell.querySelectorAll(".cell_overlay")[0];
 		active.addEventListener("click", cancelAction, false);
@@ -155,7 +155,7 @@ function tryAttack(id){
 		for (let i in availableMoves) {
 
 			try {
-				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(5-availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
+				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
 				// console.log(cellToHighlight.id);
 				cellToHighlight.style.backgroundColor = cellToHighlight.oldcolor;
 				// if (cellToHighlight.childNodes[0] != null){
