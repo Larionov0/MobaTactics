@@ -11,8 +11,10 @@ class UserProfile(models.Model):
     lobby = models.ForeignKey('game.Lobby', on_delete=models.SET_NULL, blank=True, null=True, related_name='userprofiles')
 
     def exit_lobby(self):
-        self.lobby = None
-        self.save()
+        if self.lobby:
+            self.lobby.end_game()
+            self.lobby = None
+            self.save()
 
     def __str__(self):
         return f"Profile {self.user}"

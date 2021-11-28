@@ -33,6 +33,7 @@ async function generate(){
 
 		update_from_gameState();
 		drawPlayers()
-		loadMessages()
+		// loadMessages()
+		loadLog()
 	}
 }

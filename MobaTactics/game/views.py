@@ -32,8 +32,8 @@ def exit_lobby(request):
 
 
 def check_game_start(request):
-    print(request.user.userprofile.lobby.userprofiles.count())
-    print(request.user.userprofile.lobby.userprofiles.all())
+    # print(request.user.userprofile.lobby.userprofiles.count())
+    # print(request.user.userprofile.lobby.userprofiles.all())
     return JsonResponse({"start": request.user.userprofile.lobby.userprofiles.count() == 2})
 
 

@@ -38,6 +38,7 @@ class Lobby(models.Model):
         :return:
         """
         first_user, second_user = list(self.userprofiles.all())
+        print(first_user, second_user)
         self.active_user = first_user
         self.set_heroes()
 
@@ -91,6 +92,18 @@ class Lobby(models.Model):
     @property
     def users(self):
         return [profile.user for profile in self.userprofiles.all()]
+
+    def remove_all_heroes(self):
+        for hero in Hero.objects.filter(lobby=self):
+            hero.delete()
+
+    def message(self, msg):
+        return Message.objects.create(lobby=self, text=msg)
+
+    def end_game(self):
+        self.remove_all_heroes()
+        Message.objects.filter(lobby=self).delete()
+        ChatMessage.objects.filter(lobby=self).delete()
 
 
 class Hero(models.Model):

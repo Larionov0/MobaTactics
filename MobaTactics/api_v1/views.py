@@ -14,6 +14,7 @@ def mark_update(request):
 
 
 def make_move(request):
+    get_lobby(request).message('Кто-то походил')
     params = json.loads(request.body)
     x, y = params['x'], params['y']
     hero = Hero.objects.get(id=params['hero_id'])
@@ -41,6 +42,10 @@ def get_data(request):
     update_id = params['update_id']
 
     lobby = get_lobby(request)
+    players = [user for user in lobby.users]
+    # if players[0].userprofile != lobby.active_user:
+    #     players.reverse()
+    players = [{"name": user.username, "user_id": user.userprofile.id} for user in players]
     if lobby.update_id != update_id:
         heroes = [{
             "id": hero.id,
@@ -61,12 +66,12 @@ def get_data(request):
         return JsonResponse({
             "update_id": lobby.update_id,
             "heroes": heroes,
-            "messages": list(lobby.message_set.all())[:15],
+            "messages": [message.text for message in list(lobby.message_set.all())[:15]],
             "is_my_move": request.user.userprofile == lobby.active_user,
             "winner": None,
             "chat": [],
-            "players": [{"name": user.username, "user_id": user.id} for user in lobby.users],
-            "player_id": request.user.id
+            "players": players,
+            "player_id": request.user.userprofile.id
         })
     else:
         return JsonResponse({})
