@@ -74,4 +74,5 @@ def get_data(request):
 
 def end_turn(request):
     get_lobby(request).change_turn()
+    mark_update(request)
     return JsonResponse({'ok': True})
