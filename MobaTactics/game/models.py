@@ -32,6 +32,11 @@ class Lobby(models.Model):
                 hero.save()
 
     def start_game(self):
+        """
+        Функция, вызывается на старте игры.
+        Создает всех героев, и настраивает их параметры (координаты, и тд)
+        :return:
+        """
         first_user, second_user = list(self.userprofiles.all())
         self.active_user = first_user
         self.set_heroes()
