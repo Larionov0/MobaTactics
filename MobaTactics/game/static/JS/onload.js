@@ -10,6 +10,7 @@ window.onload = function() {
 
 	var message_box = document.getElementById("message_box");
 	message_box.addEventListener("submit", sendMessage);
+	askForUpdates();
 }
 
 function changeChat(e){
@@ -32,19 +33,37 @@ function changeChat(e){
 	}
 }
 
-function endTurn(){
-	var attempt = fetch('/api/v1/end_turn', {
-			method: 'post',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-CSRFToken': csrf_token
+function askForUpdates(){
+	setInterval (async function() {
+		await load()
+		console.log('asking update at '+gameState.update_id+' at '+update_id);
+		if (Object.keys(gameState).length){
+			if (update_id != gameState.update_id){
+				update_id = gameState.update_id
+				console.log(update_id)
+				console.log(gameState.update_id)
+				generate()
 			}
 		}
-		).then((response) => {return response.json()}
-		).then((data) => {
-			console.log(data)  // {"heroes": ...}
-		})
-	if (attempt.ok){
-		waitMyMove();
+	}, 1000);
+}
+
+function endTurn(){
+	if (gameState.is_my_move){
+		fetch('/api/v1/end_turn', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-CSRFToken': csrf_token
+				}
+			}
+			).then((response) => {return response.json()}
+			).then((data) => {
+				console.log(data)  // {"heroes": ...}
+				if (data.ok){
+					current_user = gameState.player_id;
+					// waitMyMove();
+				}
+			})
 	}
 }

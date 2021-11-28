@@ -55,7 +55,7 @@ def get_data(request):
             "x": hero.x,
             "y": hero.y,
             "is_active": hero.is_active,
-            "img_src": 'https://th.bing.com/th/id/R.3b43994ed494596527296c0a7f5c1309?rik=Hf4A60nE%2fGcOcg&pid=ImgRaw&r=0',
+            "img_src": 'https://live.staticflickr.com/7203/6875019793_b345e09ffc_b.jpg',
             "user_id": hero.user.id
         } for hero in Hero.objects.filter(lobby=lobby) if hero.is_alive]
         return JsonResponse({

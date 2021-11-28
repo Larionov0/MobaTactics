@@ -70,10 +70,14 @@ class Lobby(models.Model):
 
     def change_turn(self):
         profile1, profile2 = list(self.userprofiles.all())
+        for hero in self.get_heroes_of_player(self.active_user):
+            hero.is_active = False
+            hero.save()
+        
         self.active_user = profile1 if self.active_user == profile2 else profile2
         self.save()
 
-        for hero in self.active_user:
+        for hero in self.get_heroes_of_player(self.active_user):
             hero.on_move_start()
 
     def get_heroes_of_player(self, profile):

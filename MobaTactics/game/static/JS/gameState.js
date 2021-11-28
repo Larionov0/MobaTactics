@@ -195,9 +195,13 @@ function update_from_gameState() {
 				if(movement > 0){
 					cell_overlay.addEventListener("mouseover", hoverOn, false);
 					cell_overlay.addEventListener("mouseout", hoverOff, false);
-					cell_overlay.addEventListener("click", clickOn, false);
+					if(user_id == gameState.player_id && gameState.is_my_move){
+						cell_overlay.addEventListener("click", clickOn, false);
+					}
 				}
-				cell_overlay.addEventListener("contextmenu", contextOn, false);
+				if(user_id == gameState.player_id && gameState.is_my_move){
+					cell_overlay.addEventListener("contextmenu", contextOn, false);
+				}
 			}
 			else{
 				cell_overlay.style.backgroundColor = "rgb(228, 228, 228, 0.5)";
@@ -222,7 +226,7 @@ async function update() {
 
 function drawPlayers(){
 	var players = getPlayers();
-	current_user = players[1][0];
+	current_user = gameState.player_id;
 	var user1_name = document.querySelectorAll("#field_layout span.user_1")[0];
 	user1_name.innerText = players[0][0];
 	// user1_name.addEventListener("click", function(){gameState.user_id_move = players[1][0]; generate()}, false);

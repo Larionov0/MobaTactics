@@ -85,11 +85,14 @@ function sendMessage(event){
 	catch{};
 	var message_box = document.getElementById("message_box");
 	var input_field = document.querySelectorAll("#message_box input")[0];
+	var players = getPlayers();
+	var name = players[0][players[1].indexOf(current_user)]
 	if (input_field.value != ''){
 		var current_date = new Date();
 		var datetime = current_date.getHours() + ":" + current_date.getMinutes();
 		var data = {
 			"user_id": current_user,
+			"from": name,
 			"message": input_field.value,
 			"datetime": datetime
 		}

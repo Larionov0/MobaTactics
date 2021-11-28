@@ -3,7 +3,7 @@ from .views import *
 
 urlpatterns = [
     path('get_data', get_data),
-    path('make_move', get_data),
-    path('attack', get_data),
-    path('end_turn', get_data),
+    path('make_move', make_move),
+    path('attack', attack),
+    path('end_turn', end_turn),
 ]
