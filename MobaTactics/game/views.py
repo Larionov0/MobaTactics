@@ -38,4 +38,4 @@ def check_game_start(request):
 
 
 def game(request):
-    return HttpResponse('GAME')
+    return render(request, 'game.html', context={})

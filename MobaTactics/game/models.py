@@ -36,7 +36,7 @@ class Lobby(models.Model):
         self.active_user = first_user
         self.set_heroes()
 
-        heroes = Hero.objects.filter(lobby=self, user=first_user)
+        heroes = list(Hero.objects.filter(lobby=self, user=first_user))
         heroes[0].x = 4
         heroes[0].y = 0
         heroes[1].x = 4
@@ -51,7 +51,7 @@ class Lobby(models.Model):
             hero.movement = hero.speed
             hero.save()
 
-        heroes = Hero.objects.filter(lobby=self, user=second_user)
+        heroes = list(Hero.objects.filter(lobby=self, user=second_user))
         heroes[0].x = 0
         heroes[0].y = 3
         heroes[1].x = 0
@@ -81,12 +81,12 @@ class Lobby(models.Model):
 
     @property
     def users(self):
-        return [profile.user for profile in self.userprofiles]
+        return [profile.user for profile in self.userprofiles.all()]
 
 
 class Hero(models.Model):
     name = models.CharField(max_length=50, default='new hero')
-    max_hp = models.IntegerField(default=25),
+    max_hp = models.IntegerField(default=25)
     hp = models.IntegerField(default=25)
     damage = models.IntegerField(default=7)
     speed = models.IntegerField(default=3)

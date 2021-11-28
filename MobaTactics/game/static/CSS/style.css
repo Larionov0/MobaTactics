@@ -1,0 +1,222 @@
+
+body {
+	text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+	box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+	background-color: #E5E5E5;
+}
+
+main {
+	display: flex;
+}
+
+.mirror {
+	display: inline-block;
+	-moz-transform: scale(-1, 1);
+	-webkit-transform: scale(-1, 1);
+	-o-transform: scale(-1, 1);
+	-ms-transform: scale(-1, 1);
+	transform: scale(-1, 1);
+}
+
+#button_offcanvas {
+	position: fixed;
+	user-select: none;
+	top: 5vh;
+	left: 5vh;
+	border-color: #E5E5E5;
+	background-color: transparent;
+	border-width: 0.1em;
+	border-radius: 1em;
+	padding: 0 0.5em;
+	font-size: 2em;
+	font-family: Alsina;
+	color: white;
+	transition: all .2s ease-in-out;
+}
+#button_offcanvas:hover{
+	transform: scale(1.1);
+	transition: 0.4s;
+}
+.offcanvas{
+	background-color: #04061D;
+	flex-direction:column;
+	width: 20%;
+}
+.offcanvas-body{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+.offcanvas-body a{
+	text-decoration: none;
+	font-family: BalooTamma;
+	font-size: 2em;
+	color: white;
+	margin: 5%;
+}
+
+#field_layout span {
+	font-size: 3em;
+	font-family: BalooTamma;
+	width: 40%;
+	display: block;
+	cursor: pointer;
+}
+
+#field {
+	/*user-select: none;*/
+	border: 1px solid #333;
+	color: #FFD1AA;
+}
+#field td {
+	padding: 0;
+	background-color: rgba(238, 238, 210, 0.9);
+}
+#field tr:nth-child(odd) td:nth-child(even),
+#field tr:nth-child(even) td:nth-child(odd) {
+	background-color: rgba(118, 150, 86, 0.9);
+}
+
+/*------------------multitask window style-------*/
+#multitask_window {
+	width: 38%;
+	height: 90vh;
+	max-height: 80vh;
+	background-color: #04061D;
+	border-radius: 20px;
+	display: flex;
+	font-family: Comic Sans MS;
+	flex-direction: column;
+}
+#icon_display {
+	width: 100%;
+	height: 12.5%;
+	background-color: #01020D;
+	border-radius: 20px 20px 0 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}#icon_display img {
+	user-select: none;
+	height: 60%;
+	margin-top: auto;
+	margin-bottom: auto;
+	filter: brightness(0) invert(1);
+	transition: all .2s ease-in-out;
+}#icon_display img:hover {
+	transform: scale(1.2);
+	transition: 0.4s;
+}
+#message_group {
+	width: 92.5%;
+	height: 80%;
+	
+}
+#message_display {
+	height: 97.5%;
+	background-color: grey;
+	display: flex;
+	flex-direction: column;
+	overflow:scroll;
+	overflow-x:hidden;
+}
+::-webkit-scrollbar{
+	width: 1.5vh;
+}
+#message_display::-webkit-scrollbar-track{
+	background-color: #abb7b7;
+}
+
+#message_display::-webkit-scrollbar-thumb {
+	background: transparent;
+	box-shadow: 0px 0px 0px 100vh black;
+	border-radius: 50px;
+}
+/* в душе не ебу, потом пофиксю скролбар мб*/
+
+#message_box {
+	position: relative;
+	bottom: 0;
+}#message_box input{
+	border-radius: 0 0 0 10px;
+}#message_box button{
+	border-radius: 0 0 10px 0;
+}
+/*-----------------------------------------multitask style-------------*/
+
+
+
+/*------------------------------------card style---------*/
+.card_disp {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	font-size: 0.4em;
+	font-family: CU;
+	/*font-weight: bold;*/
+	user-select: none;
+}
+.image_disp {
+	width: 100%;
+	height: 100%;
+}.icon_disp {
+	position: absolute;
+	height: 75%;
+	top: 12.5%;
+	left: 22.5%;
+	border-radius: 50%;
+}.border_disp {
+	position: absolute;
+	height: 100%;
+	left: 12.5%;
+	top: 0;
+}
+.attack_disp {
+	position: absolute;
+	bottom: 7.5%;
+	left: 20%;
+	color: white;
+}.hp_disp {
+	position: absolute;
+	bottom: 7.5%;
+	right: 20%;
+	color: white;
+}.moves_disp {
+	position: absolute;
+	top: 0%;
+	left: 10%;
+	color: white;
+}
+.cell_overlay {
+	position: absolute;
+	display: block;
+	top: 0;
+	width: inherit;
+	height: inherit;
+	background-color: transparent;
+}
+/*-----------------------card style---------------------*/
+
+
+.message{
+	display:flex;
+	flex-direction: row;
+	padding: 0.3em;	
+}
+.message .time_message{
+	color: darkgrey;
+}
+.message .nickname_message{
+	padding: 0 0.3em;
+}
+.message .text_message{
+	color: white;
+}
+.user_1 {
+	color: #f1f227;
+}
+.user_2 {
+	color: #7fffd4;
+}

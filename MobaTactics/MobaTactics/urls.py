@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/', include('game.urls')),
     path('', lambda r: HttpResponse('Hello')),
-    path('auth/', include('authsys.urls'))
+    path('auth/', include('authsys.urls')),
+    path('api/v1/', include('api_v1.urls')),
 ]
