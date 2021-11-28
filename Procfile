@@ -1,0 +1,1 @@
+web: gunicorn MobaTactics.wsgi --log-file -
