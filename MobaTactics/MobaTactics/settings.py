@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 # AUTH_USER_MODEL = 'authsys.User'
 LOGIN_REDIRECT_URL = '/main/lobbies'
+LOGIN_URL = '/auth/sign_in/'
 
 # Application definition
 
