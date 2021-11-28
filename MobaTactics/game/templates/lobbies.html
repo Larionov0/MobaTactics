@@ -13,7 +13,7 @@
         {% for lobby in lobbies %}
             <div class="lobby">
                 <h3>{{ lobby.name }}</h3>
-                <p>{{ lobby.users.count }}</p>
+                <p>{{ lobby.userprofiles.count }}</p>
                 <a href="/main/enter_lobby/{{lobby.id}}"><button>Войти в лобби</button></a>
             </div>
         {% endfor %}

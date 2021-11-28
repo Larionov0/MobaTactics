@@ -19,7 +19,7 @@
                 'Content-Type': 'application/json',
                 'X-CSRFToken': '{{ csrf_token }}'
             },
-            // body: JSON.stringify({})
+            body: JSON.stringify({'lol': 2})
         }
         ).then((response) => {return response.json()}
         ).then((data) => {

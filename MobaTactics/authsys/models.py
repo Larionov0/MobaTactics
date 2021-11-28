@@ -8,7 +8,7 @@ class UserProfile(models.Model):
     points = models.IntegerField(default=0)
     wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
-    lobby = models.ForeignKey('game.Lobby', on_delete=models.SET_NULL, blank=True, null=True, related_name='users')
+    lobby = models.ForeignKey('game.Lobby', on_delete=models.SET_NULL, blank=True, null=True, related_name='userprofiles')
 
     def exit_lobby(self):
         self.lobby = None

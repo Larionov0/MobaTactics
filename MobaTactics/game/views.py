@@ -13,12 +13,12 @@ def lobbies_view(request):
 
 def enter_lobby(request, lobby_id):
     lobby = Lobby.objects.get(id=lobby_id)
-    if lobby.users.count() == 2:
+    if lobby.userprofiles.count() == 2:
         return HttpResponse('Здесь уже 2 игрока')
-    elif lobby.users.count() == 1 and lobby.users.all()[0] != request.user.userprofile:
+    elif lobby.userprofiles.count() == 1 and lobby.userprofiles.all()[0] != request.user.userprofile:  # старт игры
         request.user.userprofile.lobby = lobby
         request.user.userprofile.save()
-        start_game()
+        lobby.start_game()
         return redirect('/main/game')
     else:
         request.user.userprofile.lobby = lobby
@@ -32,14 +32,10 @@ def exit_lobby(request):
 
 
 def check_game_start(request):
-    print(request.user.userprofile.lobby.users.count())
-    print(request.user.userprofile.lobby.users.all())
-    return JsonResponse({"start": request.user.userprofile.lobby.users.count() == 2})
+    print(request.user.userprofile.lobby.userprofiles.count())
+    print(request.user.userprofile.lobby.userprofiles.all())
+    return JsonResponse({"start": request.user.userprofile.lobby.userprofiles.count() == 2})
 
 
 def game(request):
     return HttpResponse('GAME')
-
-
-def start_game():
-    pass

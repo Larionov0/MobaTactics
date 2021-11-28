@@ -1,0 +1,45 @@
+{
+  "update_id": 1245,
+  "heroes": [
+    {
+      "name": "Bob",
+      "hp": 20,
+      "attack": 3,
+      "speed": 2,
+      "user_id": 533,
+      "is_active": false
+    },
+    {
+      "name": "Evelyn",
+      "hp": 10,
+      "attack": 5,
+      "speed": 3,
+      "user_id": 335,
+      "is_active": true
+    }
+  ],
+  "messages": [
+    "Вася ударил петю. Нанес 10 урона.",
+    "Петя откинул копыта",
+    "Здесь будут последние 10 сообщений"
+  ],
+  "is_my_move": true,
+  "winner": null,
+  "chat": [
+    {
+      "from": "Player1",
+      "message": "Ты лох",
+      "datetime": "19:57"
+    }
+  ],
+  "players": [
+    {
+      "name": "Player1",
+      "user_id": 533
+    },
+    {
+      "name": "Player2",
+      "user_id": 335
+    }
+  ]
+}
