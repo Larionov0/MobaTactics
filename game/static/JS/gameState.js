@@ -219,7 +219,7 @@ async function update() {
 	if (Object.keys(gameState).length){
 		update_from_gameState()
 		drawPlayers()
-		loadMessages()
+		setChat(selected_message)
 	}
 }
 
@@ -229,9 +229,13 @@ function drawPlayers(){
 	current_user = gameState.player_id;
 	var user1_name = document.querySelectorAll("#field_layout span.user_1")[0];
 	user1_name.innerText = players[0][0];
-	// user1_name.addEventListener("click", function(){gameState.user_id_move = players[1][0]; generate()}, false);
 	var user2_name = document.querySelectorAll("#field_layout span.user_2")[0];
 	user2_name.innerText = players[0][1];
+	if (players[1][0] == current_user){
+		user1_name.style.textDecoration = "underline";	
+	} else {
+		user2_name.style.textDecoration = "underline";
+	}
 }
 
 

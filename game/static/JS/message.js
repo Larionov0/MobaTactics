@@ -26,7 +26,7 @@ function loadMessages() {
 		// console.log(players);
 		var message = document.createElement("div");
 		message.classList.toggle("message");
-		message.classList.toggle("user_"+log.user_id);
+		message.classList.toggle("user_"+(players[1].indexOf(log.user_id)+1));
 
 		var time_message = document.createElement("span");
 		time_message.classList.toggle("time_message");

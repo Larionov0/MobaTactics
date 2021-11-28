@@ -17,7 +17,12 @@ function changeChat(e){
 	var child = e;
 	var parent = child.parentNode;
 	var index = Array.prototype.indexOf.call(parent.children, child);
-	switch (index){
+	selected_message = index;
+	setChat(selected_message);
+}
+
+function setChat(i){
+	switch (selected_message){
 		case 0:
 			loadLog();
     		break;
