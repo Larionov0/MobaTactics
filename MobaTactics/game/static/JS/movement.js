@@ -6,7 +6,7 @@ function showMoves(id){
 
 	if (current_user == hero.user_id){
 
-		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y)+") td:nth-of-type("+hero.x+")")[0];
+		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y+1)+") td:nth-of-type("+(hero.x+1)+")")[0];
 		hero_cell.oldcolor = hero_cell.style.backgroundColor;
 		hero_cell.style.backgroundColor = "rgba(180, 201, 254, 0.9)";
 
@@ -19,7 +19,7 @@ function showMoves(id){
 		for (let i in availableMoves) {
 
 			try {
-				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
+				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1]+1)+") td:nth-of-type("+(availableMoves[i][0]+1)+")")[0];
 				// console.log(cellToHighlight.id);
 				if (cellToHighlight.childNodes[0] == null){
 					cellToHighlight.oldcolor = cellToHighlight.style.backgroundColor;
@@ -43,7 +43,7 @@ function hideMoves(id){
 
 	if (current_user == hero.user_id){
 
-		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y)+") td:nth-of-type("+hero.x+")")[0];
+		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y+1)+") td:nth-of-type("+(hero.x+1)+")")[0];
 		hero_cell.style.backgroundColor = hero_cell.oldcolor;
 
 		// var movement = hero.movement.split(';');
@@ -54,7 +54,7 @@ function hideMoves(id){
 		for (let i in availableMoves) {
 
 			try {
-				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
+				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1]+1)+") td:nth-of-type("+(availableMoves[i][0]+1)+")")[0];
 				// console.log(cellToHighlight.id);
 				if (cellToHighlight.childNodes[0] == null){
 					cellToHighlight.style.backgroundColor = cellToHighlight.oldcolor;
@@ -80,7 +80,7 @@ function tryMove(id){
 
 	if (current_user == hero.user_id){
 
-		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y)+") td:nth-of-type("+hero.x+")")[0];
+		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y+1)+") td:nth-of-type("+(hero.x+1)+")")[0];
 		var active = hero_cell.querySelectorAll(".cell_overlay")[0];
 		active.addEventListener("click", cancelAction, false);
 		// hero_cell.style.backgroundColor = "rgba(192, 192, 192, 0.9)";
@@ -92,12 +92,14 @@ function tryMove(id){
 		for (let i in availableMoves) {
 
 			try {
-				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
+				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1]+1)+") td:nth-of-type("+(availableMoves[i][0]+1)+")")[0];
 				// console.log(cellToHighlight.id);
 				if (cellToHighlight.childNodes[0] == null){
 					cellToHighlight.removeEventListener("click", makeAttack, false);
 					cellToHighlight.addEventListener("click", makeMove, false);
 					cellToHighlight.name = [availableMoves[i][0],availableMoves[i][1],id];
+					// customAddMessage('av '+[availableMoves[i][0],availableMoves[i][1],id]);
+					// customAddMessage('name ' +cellToHighlight.name);
 				}
 			} catch (error) {
 				// console.log(error);
@@ -111,35 +113,35 @@ function makeMove(){
 	var field = document.getElementById("field");
 	let pos = this.name;
 	this.removeAttribute("name");
-	var attempt = fetch('/api/v1/make_move', {
-			method: 'post',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-CSRFToken': csrf_token
-			},
-			body: JSON.stringify({
-				'hero_id': pos[2],
-				'x': pos[0]-1,
-				'y': pos[1]-1})
-		}
-		).then((response) => {return response.json()}
-		).then((data) => {
-			console.log(data)  // {"heroes": ...}
-		})
-	if (attempt.ok){
-		waitMyMove();
+	fetch('/api/v1/make_move', {
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json',
+			'X-CSRFToken': csrf_token
+		},
+		body: JSON.stringify({
+			'hero_id': pos[2],
+			'x': pos[0],
+			'y': pos[1]})
 	}
+	).then((response) => {return response.json()}
+	).then((data) => {
+		console.log(data)  // {"heroes": ...}
+		// if (data.ok){
+		// 	waitMyMove();
+		// }
+	})
 }
 
 function tryAttack(id){
-	cancelAction();
+	// cancelAction();
 	var field = document.getElementById("field");
 	
 	var hero = getHeroById(id);
 
 	if (current_user == hero.user_id){
 
-		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y)+") td:nth-of-type("+hero.x+")")[0];
+		var hero_cell = field.querySelectorAll("tr:nth-of-type("+(hero.y+1)+") td:nth-of-type("+(hero.x+1)+")")[0];
 		hero_cell.style.backgroundColor = "rgba(180, 201, 254, 0.9)";
 		var active = hero_cell.querySelectorAll(".cell_overlay")[0];
 		active.addEventListener("click", cancelAction, false);
@@ -155,7 +157,7 @@ function tryAttack(id){
 		for (let i in availableMoves) {
 
 			try {
-				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1])+") td:nth-of-type("+availableMoves[i][0]+")")[0];
+				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1]+1)+") td:nth-of-type("+(availableMoves[i][0]+1)+")")[0];
 				// console.log(cellToHighlight.id);
 				cellToHighlight.style.backgroundColor = cellToHighlight.oldcolor;
 				// if (cellToHighlight.childNodes[0] != null){
@@ -184,23 +186,24 @@ function makeAttack(){
 	// hero.moves_made = 100;
 	// hero.is_active = false;
 	// whoMoves();
-	var attempt = fetch('/api/v1/attack', {
-			method: 'post',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-CSRFToken': csrf_token
-			},
-			body: JSON.stringify({
-				'hero_id': hero.id,
-				'target_id': enemy_hero.id})
-		}
-		).then((response) => {return response.json()}
-		).then((data) => {
-			console.log(data)  // {"heroes": ...}
-		})
-	if (attempt.ok){
-		waitMyMove();
+
+	fetch('/api/v1/attack', {
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json',
+			'X-CSRFToken': csrf_token
+		},
+		body: JSON.stringify({
+			'hero_id': hero.id,
+			'target_id': enemy_hero.id})
 	}
+	).then((response) => {return response.json()}
+	).then((data) => {
+		console.log(data)  // {"heroes": ...}
+		// if (data.ok){
+		// 	waitMyMove();
+		// }
+	})
 }
 
 

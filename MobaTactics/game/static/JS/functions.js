@@ -42,27 +42,17 @@ function getPlayers(){
 	return [players,ids]
 }
 
+var waitMyMoveInterval;
 function waitMyMove(){
-	var waitMyMoveInterval = setInterval ( function() {
-		gameState = fetch('/api/v1/get_data', {
-				method: 'post',
-				headers: {
-					'Content-Type': 'application/json',
-					'X-CSRFToken': csrf_token
-				},
-				body: JSON.stringify({
-					'update_id': update_id})
-			}
-			).then((response) => {return response.json()}
-			).then((data) => {
-				console.log(data)  // {"heroes": ...}
-			})
-		customAddMessage('waiting my move, got json with length '+Object.keys(gameState).length);
+	waitMyMoveInterval = setInterval (async function() {
+		generate()
+		console.log('waiting my move, got json with length '+Object.keys(gameState).length);
 		if (Object.keys(gameState).length){
 			if (update_id != gameState.update_id){
+				update_id = gameState.update_id
 				generate()
 			}
-			if (gameState.is_my_move){
+			if (update_id == gameState.update_id && gameState.is_my_move){
 				clearInterval(waitMyMoveInterval);
 			}
 		}
