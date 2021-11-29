@@ -10,6 +10,10 @@ class UserProfile(models.Model):
     losses = models.IntegerField(default=0)
     lobby = models.ForeignKey('game.Lobby', on_delete=models.SET_NULL, blank=True, null=True, related_name='userprofiles')
 
+    @classmethod
+    def create_from_user(cls, user):
+        return cls.objects.create(user=user)
+
     def exit_lobby(self):
         if self.lobby:
             self.lobby.end_game()
