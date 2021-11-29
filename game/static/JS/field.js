@@ -34,6 +34,6 @@ async function generate(){
 		update_from_gameState();
 		drawPlayers()
 		// loadMessages()
-		loadLog()
+		setChat(selected_message)
 	}
 }

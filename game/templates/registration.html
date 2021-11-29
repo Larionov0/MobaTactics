@@ -24,38 +24,23 @@
     <script type="text/javascript">
         window.onload = function(){
             document.getElementById("id_username").placeholder = "Username";
-            document.getElementById("id_password").placeholder = "Password";
+            document.getElementById("id_password1").placeholder = "Password";
+            document.getElementById("id_password2").placeholder = "Confirm Password";
         }
     </script>
 </head>
-
 <body style="overflow:  hidden">
        
-    <div class="login">   
-        <h2>Login</h2> 
+    <div class="login">
+        <h2>Join us, it's free and gripping</h2>
         <form id="login" method="post">
             {% csrf_token %}
-            {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-            {% endif %}
-
-            {% if next %}
-                {% if user.is_authenticated %}
-                <p>Your account doesn't have access to this page. To proceed,
-                please login with an account that has access.</p>
-                {% else %}
-                <p>Please login to see this page.</p>
-                {% endif %}
-            {% endif %}
-            <br><br>
-            {{ form.username }}
-            {{ form.password }}
-            <button type="submit">Log In</button>
-            <br><br>
-            <input type="checkbox" id="check">    
-            <span>Keep loged</span>    
+            {{ form.as_p }}
+            <button type="submit">Sign Up</button>
             <br><br>    
-            <p><a href="#">Forgot password</a></p>    
+               
+            <br><br>    
+            <p>I accept The site Terms of Service  and agree to the Privacy policy</p>    
         </form>     
     </div>    
 </body>

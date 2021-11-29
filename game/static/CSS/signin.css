@@ -53,18 +53,10 @@ p {
     text-align: center; 
 }  
 
-input#id_username{
+input:not(input[type=checkbox]){
     width: 53%;
     color: black;
-    padding: 2%;
-    font-family: Baloo;
-    font-size: 24px;
-    background: #C4C4C4;
-    border-radius: 20px;
-}
-input#id_password{
-    width: 53%;
-    color: black;
+    margin: 0.3em 0;
     padding: 2%;
     font-family: Baloo;
     font-size: 24px;
@@ -72,19 +64,25 @@ input#id_password{
     border-radius: 20px;
 }
 
-#log{  
+label{
+    display: none;
+}
+span.helptext{
+    display: none;
+}
+button[type=submit]{
     width: 53%;
     padding: 2%;
     border: none;
     border-radius: 17px;
     padding-left: 7px;
-    color: black;
+    color: rgb(240,222,210);
     font-family: Baloo;
     font-size: 24px;
     background-color: #577334;
     transition: all .2s ease-in-out;
 }  
-#log:hover{
+button[type=submit]:hover{
     transform: scale(1.05);
     background: #60803a ;
     transition: 0.4s;

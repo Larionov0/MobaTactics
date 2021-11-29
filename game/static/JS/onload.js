@@ -10,6 +10,9 @@ window.onload = function() {
 
 	var message_box = document.getElementById("message_box");
 	message_box.addEventListener("submit", sendMessage);
+
+	var end_turn = document.getElementById("end_turn");
+	end_turn.addEventListener("click", endTurn);
 	askForUpdates();
 }
 
@@ -33,7 +36,7 @@ function setChat(i){
 			loadPrivate();
     		break;
 		case 3:
-			endTurn();
+			loadGlobal();
     		break;
 	}
 }
@@ -45,8 +48,8 @@ function askForUpdates(){
 		if (Object.keys(gameState).length){
 			if (update_id != gameState.update_id){
 				update_id = gameState.update_id
-				console.log(update_id)
-				console.log(gameState.update_id)
+				// console.log(update_id)
+				// console.log(gameState.update_id)
 				generate()
 			}
 		}

@@ -24,6 +24,7 @@
 </head>
 <body>
     <div>
+        <button onclick="window.location.href='/auth/logout'">Logout</button>
         <h1>Hello, {{ user.username }}</h1>
         <div class="lobby_container">
         {% for lobby in lobbies %}

@@ -79,7 +79,7 @@ p {
     border: none;
     border-radius: 17px;
     font-size: 1em;
-    color: black;
+    color: rgb(240,230,210);
     font-family: Baloo;
     background-color: #577334;
     transition: all .2s ease-in-out;

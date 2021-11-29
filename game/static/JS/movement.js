@@ -160,13 +160,13 @@ function tryAttack(id){
 				var cellToHighlight = field.querySelectorAll("tr:nth-of-type("+(availableMoves[i][1]+1)+") td:nth-of-type("+(availableMoves[i][0]+1)+")")[0];
 				// console.log(cellToHighlight.id);
 				cellToHighlight.style.backgroundColor = cellToHighlight.oldcolor;
-				// if (cellToHighlight.childNodes[0] != null){
+				if (cellToHighlight.childNodes[0] != null){
 					cellToHighlight.style.backgroundColor = "rgba(232, 172, 134, 0.9)";
 					cellToHighlight.removeEventListener("click", makeMove, false);
 					cellToHighlight.addEventListener("click", makeAttack, false);
 					cellToHighlight.name = [availableMoves[i][0],availableMoves[i][1],id];
 					li += 1;
-				// }
+				}
 			} catch (error) {
 				// console.log(error);
 			}
