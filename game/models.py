@@ -139,6 +139,7 @@ class Hero(models.Model):
         self.save()
 
     def attack(self, other):
+        self.user.lobby.message(f"{self.name} атаковал {other.name} с силой {self.damage}")
         other.get_damage(self.damage)
         self.is_active = False
         self.save()
@@ -147,8 +148,10 @@ class Hero(models.Model):
         remaining_damage = damage - self.armor
         if remaining_damage > 0:
             self.hp -= remaining_damage
+            self.user.lobby.message(f"{self.name} получил {remaining_damage}/{damage} урона. Осталось {self.hp} HP")
             if self.hp <= 0:
                 self.is_alive = False
+                self.user.lobby.message(f"{self.name} погиб")
         self.save()
 
     def spawn_real_from_proto(self):

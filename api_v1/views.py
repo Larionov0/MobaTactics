@@ -14,10 +14,11 @@ def mark_update(request):
 
 
 def make_move(request):
-    get_lobby(request).message('Кто-то походил')
     params = json.loads(request.body)
     x, y = params['x'], params['y']
     hero = Hero.objects.get(id=params['hero_id'])
+
+    get_lobby(request).message(f'{hero.name} походил')
 
     hero.make_move(x, y)
     mark_update(request)
@@ -28,7 +29,7 @@ def attack(request):
     params = json.loads(request.body)
     attacker = Hero.objects.get(id=params['hero_id'])
     target = Hero.objects.get(id=params['target_id'])
-    lobby = get_lobby(request)
+    # lobby = get_lobby(request)
 
     attacker.attack(target)
     mark_update(request)
@@ -66,7 +67,7 @@ def get_data(request):
         return JsonResponse({
             "update_id": lobby.update_id,
             "heroes": heroes,
-            "messages": [message.text for message in list(lobby.message_set.all())[:15]],
+            "messages": [message.text for message in list(lobby.message_set.all())[-15:]],  # FIXME: last 15
             "is_my_move": request.user.userprofile == lobby.active_user,
             "winner": None,
             "chat": [],
