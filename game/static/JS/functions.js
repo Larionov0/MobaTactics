@@ -56,5 +56,5 @@ function waitMyMove(){
 				clearInterval(waitMyMoveInterval);
 			}
 		}
-	}, 1000);
+	}, 500);
 }

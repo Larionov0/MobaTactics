@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import django_heroku
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,11 +83,19 @@ WSGI_APPLICATION = 'MobaTactics.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'DB': os.environ.get('POSTGRES_NAME'),
+        'HOST': 'db',
+        'PORT': 5432,
+    },
+    'local': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -132,4 +141,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
