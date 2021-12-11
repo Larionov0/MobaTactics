@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import HttpResponse
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/', include('game.urls')),
-    path('', lambda r: HttpResponse('Hello')),
+    # path('', lambda r: HttpResponse('Hello')),
     path('auth/', include('authsys.urls')),
     path('api/v1/', include('api_v1.urls')),
+    path('', RedirectView.as_view(url='/main/lobbies'))
 ]

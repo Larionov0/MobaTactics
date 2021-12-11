@@ -1,5 +1,6 @@
 from django.db import models
 from authsys.models import UserProfile
+import random
 # from django.conf import settings
 
 
@@ -22,10 +23,10 @@ class Lobby(models.Model):
         self.save()
 
     def set_heroes(self):
-        heroes = Hero.objects.filter(is_proto=True)
-        hero1, hero2 = heroes[0], heroes[1]
-        for user, hero_proto in zip(self.userprofiles.all(), [hero1, hero2]):
+        heroes = list(Hero.objects.filter(is_proto=True))
+        for user in self.userprofiles.all():
             for _ in range(4):
+                hero_proto = random.choice(heroes)
                 hero = hero_proto.spawn_real_from_proto()
                 hero.user = user
                 hero.lobby = self
@@ -139,6 +140,7 @@ class Hero(models.Model):
         self.save()
 
     def attack(self, other):
+        self.user.lobby.message(f"{self.name} атаковал {other.name} с силой {self.damage}")
         other.get_damage(self.damage)
         self.is_active = False
         self.save()
@@ -147,8 +149,10 @@ class Hero(models.Model):
         remaining_damage = damage - self.armor
         if remaining_damage > 0:
             self.hp -= remaining_damage
+            self.user.lobby.message(f"{self.name} получил {remaining_damage}/{damage} урона. Осталось {self.hp} HP")
             if self.hp <= 0:
                 self.is_alive = False
+                self.user.lobby.message(f"{self.name} погиб")
         self.save()
 
     def spawn_real_from_proto(self):
