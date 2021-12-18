@@ -1,1 +1,1 @@
-DEFAULT_DATABASE = 'local'
+DEFAULT_DATABASE = 'postgres'
