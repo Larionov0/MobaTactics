@@ -27,9 +27,15 @@
                 font-family: CU;
                 src: url("{% static 'FONTS/Cry-Uncial-Regular.ttf' %}");
             }
+            @font-face { /* https://www.google.com/get/noto/#noto-emoji-zsye */
+                font-family: CC;
+                src: url("{% static 'FONTS/Credit-Card.ttf' %}");
+            }
 
             .border_disp {
               content:url({% static 'IMG/hs_icon.png' %});
+            }.armor_img {
+              content:url({% static 'IMG/Armor.png' %});
             }
 		</style>
 
