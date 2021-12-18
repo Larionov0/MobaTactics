@@ -102,6 +102,11 @@ main {
 	transform: translate(-2px,2px);
 	transition: 0.1s;
 }
+#end_turn:disabled{
+	box-shadow: none;
+	box-shadow: -3px 3px 2px rgb(95,88,72), 0 0 0 5px rgb(115, 109, 93);
+	background-color: rgb(135, 124, 106);
+}
 
 /*------------------multitask window style-------*/
 #multitask_window {
