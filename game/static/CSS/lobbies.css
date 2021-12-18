@@ -89,3 +89,26 @@ p {
     background: #60803a ;
     transition: 0.4s;
 }
+.log_out {
+    position: absolute;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #DE6161;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.log_out:hover {background-color: #BD3939}
+
+.log_out:active {
+  background-color: #BD3939;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
