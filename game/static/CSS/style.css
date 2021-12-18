@@ -193,6 +193,10 @@ main {
 	top: 12.5%;
 	left: 22.5%;
 	border-radius: 50%;
+	aspect-ratio: 3/4;
+	object-position: center;
+	/* убрать нижнее если хочется сжимать картинки */
+	object-fit: cover; 
 }.border_disp {
 	position: absolute;
 	height: 100%;
