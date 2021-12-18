@@ -26,7 +26,7 @@ function loadMessages() {
 		// console.log(players);
 		var message = document.createElement("div");
 		message.classList.toggle("message");
-		message.classList.toggle("user_"+(players[1].indexOf(log.user_id)+1));
+		message.classList.toggle("user_"+(players[1].indexOf(log.from_id)+1));
 
 		var time_message = document.createElement("span");
 		time_message.classList.toggle("time_message");
@@ -88,15 +88,19 @@ function sendMessage(event){
 	var players = getPlayers();
 	var name = players[0][players[1].indexOf(current_user)]
 	if (input_field.value != ''){
-		var current_date = new Date();
-		var datetime = current_date.getHours() + ":" + current_date.getMinutes();
-		var data = {
-			"user_id": current_user,
-			"from": name,
-			"message": input_field.value,
-			"datetime": datetime
+		fetch('/api/v1/send_message', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': csrf_token
+			},
+			body: JSON.stringify({
+				'message': input_field.value})
 		}
-		gameState.chat.push(data);
+		).then((response) => {return response.json()}
+		).then((data) => {
+			console.log(data)
+		})
 		input_field.value = null;
 		loadMessages();
 	}
