@@ -53,7 +53,7 @@ function askForUpdates(){
 				generate()
 			}
 		}
-	}, 1000);
+	}, 250);
 }
 
 function endTurn(){

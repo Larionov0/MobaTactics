@@ -1,7 +1,9 @@
 from django.db import models
 from authsys.models import UserProfile
 import random
+from pytz import timezone
 # from django.conf import settings
+from datetime import datetime, timezone
 
 
 X_count = 5
@@ -183,10 +185,14 @@ class ChatMessage(models.Model):
     text = models.CharField(max_length=200)
     datetime = models.DateTimeField(auto_now=True)
 
+    def get_datetime(self):
+        return self.datetime.replace(tzinfo=timezone.utc).astimezone(tz=None)
+
     def to_json(self):
+        dt = self.get_datetime()
         return {
-            "from_id": self.from_user.userprofile.id,
-            "from": self.from_user.username,
+            "from_id": self.from_user.id,
+            "from": self.from_user.user.username,
             "message": self.text,
-            "datetime": f"{self.datetime}"
+            "datetime": datetime.strftime(dt, '%H:%M:%S')
         }
