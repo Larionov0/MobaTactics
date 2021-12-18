@@ -125,7 +125,8 @@ class Hero(models.Model):
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
     is_active = models.BooleanField(default=False)
-    image = models.ImageField(blank=True, null=True, upload_to='heroes_images/')  # возможно, нужно пока сделать просто строку с линком
+    # image = models.ImageField(blank=True, null=True, upload_to='heroes_images/')  # возможно, нужно пока сделать просто строку с линком
+    image_src = models.TextField(blank=True, null=True, max_length=250)
 
     def __str__(self):
         return f"{self.name}"
