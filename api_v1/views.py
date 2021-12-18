@@ -27,15 +27,18 @@ def make_move(request):
 
 def attack(request):
     params = json.loads(request.body)
-    attacker = Hero.objects.get(id=params['hero_id'])
+    attacker: Hero = Hero.objects.get(id=params['hero_id'])
     target = Hero.objects.get(id=params['target_id'])
     # lobby = get_lobby(request)
 
-    attacker.attack(target)
-    mark_update(request)
-    # if all([not hero.is_active for hero in Lobby.get_heroes_of_player(request.user.userprofile)]):  # все ли походили
-    #     lobby.change_turn()
-    return JsonResponse({'ok': True})
+    if attacker.is_active:
+        attacker.attack(target)
+        mark_update(request)
+        # if all([not hero.is_active for hero in Lobby.get_heroes_of_player(request.user.userprofile)]):  # все ли походили
+        #     lobby.change_turn()
+        return JsonResponse({'ok': True})
+    else:
+        return JsonResponse({'ok': False})
 
 
 def get_data(request):
