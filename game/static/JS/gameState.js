@@ -200,7 +200,10 @@ function update_from_gameState() {
 					}
 				}
 				if(user_id == gameState.player_id && gameState.is_my_move){
+					document.getElementById("end_turn").removeAttribute('disabled');
 					cell_overlay.addEventListener("contextmenu", contextOn, false);
+				} else {
+					document.getElementById("end_turn").setAttribute('disabled', 'true');
 				}
 			}
 			else{
