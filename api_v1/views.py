@@ -73,7 +73,7 @@ def get_data(request):
             "messages": [message.text for message in list(lobby.message_set.all())[-15:]],  # FIXME: last 15
             "is_my_move": request.user.userprofile == lobby.active_user,
             "winner": None,
-            "chat": [],
+            "chat": [message.to_json() for message in lobby.chat_messages.all()],
             "players": players,
             "player_id": request.user.userprofile.id
         })
@@ -84,4 +84,12 @@ def get_data(request):
 def end_turn(request):
     get_lobby(request).change_turn()
     mark_update(request)
+    return JsonResponse({'ok': True})
+
+
+def send_message(request):
+    params = json.loads(request.body)
+    user = request.user
+    ChatMessage.objects.create(lobby=user.userprofile.lobby, from_user=user.userprofile, text=params['message'])
+    get_lobby(request).mark_update()
     return JsonResponse({'ok': True})

@@ -6,4 +6,5 @@ urlpatterns = [
     path('make_move', make_move),
     path('attack', attack),
     path('end_turn', end_turn),
+    path('send_message', send_message),
 ]

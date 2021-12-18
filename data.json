@@ -27,6 +27,7 @@
   "winner": null,
   "chat": [
     {
+      "from_id": 2,
       "from": "Player1",
       "message": "Ты лох",
       "datetime": "19:57"

@@ -178,7 +178,15 @@ class Message(models.Model):
 
 
 class ChatMessage(models.Model):
-    lobby = models.ForeignKey(Lobby, on_delete=models.CASCADE)
+    lobby = models.ForeignKey(Lobby, on_delete=models.CASCADE, related_name='chat_messages')
     from_user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     text = models.CharField(max_length=200)
     datetime = models.DateTimeField(auto_now=True)
+
+    def to_json(self):
+        return {
+            "from_id": self.from_user.userprofile.id,
+            "from": self.from_user.username,
+            "message": self.text,
+            "datetime": f"{self.datetime}"
+        }
