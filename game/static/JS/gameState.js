@@ -145,6 +145,7 @@ function update_from_gameState() {
 		var icon = hero.icon;
 		var hp = hero.hp;
 		var damage = hero.damage;
+		var armor = hero.armor;
 		var speed = hero.speed;
 		var movement = hero.movement;
 		var user_id = hero.user_id;
@@ -170,6 +171,10 @@ function update_from_gameState() {
 			attack_disp.classList.toggle("attack_disp");
 			var hp_disp = document.createElement("div");
 			hp_disp.classList.toggle("hp_disp");
+			var armor_img = document.createElement("div");
+			armor_img.classList.toggle("armor_img");
+			var armor_disp = document.createElement("div");
+			armor_disp.classList.toggle("armor_disp");
 			var moves_disp = document.createElement("div");
 			moves_disp.classList.toggle("moves_disp");
 			var cell_overlay = document.createElement("div");
@@ -180,6 +185,8 @@ function update_from_gameState() {
 			card_disp.appendChild(image_disp);
 			card_disp.appendChild(attack_disp);
 			card_disp.appendChild(hp_disp);
+			card_disp.appendChild(armor_img);
+			card_disp.appendChild(armor_disp);
 			card_disp.appendChild(moves_disp);
 			cell.appendChild(card_disp);
 			cell_overlay.setAttribute("name",id);
@@ -189,6 +196,7 @@ function update_from_gameState() {
 //			border_disp.src = "props/hs_icon.png";
 			attack_disp.innerHTML = damage;
 			hp_disp.innerHTML = hp;
+			armor_disp.innerHTML = armor;
 			moves_disp.innerHTML = movement;
 
 			if(is_active){

@@ -184,8 +184,8 @@ main {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	font-size: 0.4em;
-	font-family: CU;
+	font-size: 0.25em;
+	font-family: CC;
 	/*font-weight: bold;*/
 	user-select: none;
 }
@@ -210,18 +210,29 @@ main {
 }
 .attack_disp {
 	position: absolute;
-	bottom: 7.5%;
-	left: 20%;
+	bottom: 12.5%;
+	left: 22.5%;
 	color: white;
 }.hp_disp {
 	position: absolute;
-	bottom: 7.5%;
-	right: 20%;
+	bottom: 12.5%;
+	right: 22.5%;
+	color: white;
+}.armor_disp {
+	position: absolute;
+	top: 12.5%;
+	right: 22.5%;
+	color: white;
+}.armor_img {
+	position: absolute;
+	height: 25%;
+	top: 10%;
+	right: 17.5%;
 	color: white;
 }.moves_disp {
 	position: absolute;
-	top: 0%;
-	left: 10%;
+	top: 2.5%;
+	left: 2.5%;
 	color: white;
 }
 .cell_overlay {
